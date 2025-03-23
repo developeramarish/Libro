@@ -567,15 +567,41 @@ namespace BookAPI.Data
             }
 
             modelBuilder.Entity<SubCategory>().HasData(subCategories);
-            // Додавання видавництв
-            var publishers = new List<Publisher>
+
+            // ============ Publishers ============
+
+            var publisherData = new[] 
             {
-                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво А", Description = "Видавництво, що спеціалізується на науковій літературі." },
-                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво Б", Description = "Видавництво, відоме своїми детективами та трилерами." },
-                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво В", Description = "Видавництво, що видає книги з фантастики та фентезі." },
-                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво Г", Description = "Видавництво, що спеціалізується на історичних книгах." },
-                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво Д", Description = "Видавництво, що видає книги з психології та саморозвитку." }
+                ("BIMBA","BIMBA specializes in publishing Eastern fiction and Japanese manga in Ukraine."),
+                ("BookChef","BOOKCHEF - shapes personality through quality literature and language - the main sources of our national unity and the development of our mentality and culture. These principles are the basis of the company's corporate social responsibility strategy."),
+                ("Komubook","The project is aimed primarily at publishing works of art by famous foreign authors that should have been published in Ukrainian long ago, but for one reason or another, none of the traditional Ukrainian publishers have done so or previous editions have long been sold out."),
+                ("A-ba-ba-ha-la-ma-ha","the first private children's publishing house of independent Ukraine, founded in Kyiv in 1992. Since 2008, it has been publishing books for all age groups."),
+                ("Discursus","The publishing house specializes in contemporary fiction and non-fiction."),
+                ("ArtHuss","To develop a creative professional community, to talk about complex things in an easy way, to broaden readers' worldviews, and to fill life with beauty and aesthetics"),
+                ("Astrolabe","The publishing house publishes literature of various genres, namely: fiction, poetry, books on philosophy, psychology, history, religion, political science, law, economics, art, etc."),
+                ("Vivat","The main areas of activity of the publishing house are non-fiction, fiction, children's and teenage literature."),
+                ("Vydavnytstvo","The publishing house \"Vydavnytsvo\" is engaged in the search and printing of literature that highlights complex issues that, in the opinion of its team, are not reflected qualitatively in the assortment of Ukrainian bookstores: death, teenage adulthood, self-awareness"),
+                ("Academvydav","It publishes textbooks, study guides for students, secondary school students, as well as scientific, reference and encyclopedic books. The main disciplines are literary studies, linguistics, philosophy, logic, ethics, religious studies, political science, psychology, sociology, history, pedagogy, business communications, economics, management, geography, ecology, mathematics, etc."),
+                ("Academia","publishes textbooks, manuals for universities and secondary schools, scientific, reference and encyclopedic, and fiction literature."),
+                ("Veselka","Ukrainian publishing house of literature for children."),
+                ("Henesa","One of the largest publishing houses in modern Ukraine. The main area of ​​activity is educational book publishing. The director of the publishing house is Mykola Vasylovych Chayun."),
+                ("Aston","Ukrainian publishing house located in Ternopil. Specializes in publishing textbooks for secondary educational institutions throughout Ukraine."),
+                ("AMSA","Ukrainian publishing house specializing in the production of children's fiction, school and educational literature."),
             };
+
+            var publishers = new List<Publisher>();
+
+            foreach (var (name, desciption) in publisherData)
+            {
+                var publisher = new Publisher()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = name,
+                    Description = desciption
+                };
+                publishers.Add(publisher);
+            }
+
             modelBuilder.Entity<Publisher>().HasData(publishers);
 
             // Додавання авторів
