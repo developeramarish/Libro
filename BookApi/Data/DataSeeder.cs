@@ -1,178 +1,4 @@
-﻿//using Microsoft.EntityFrameworkCore;
-//using BookAPI.Models;
-//using System;
-//using System.Collections.Generic;
-
-//namespace BookAPI.Data
-//{
-//    public static class DataSeeder
-//    {
-//        public static void Seed(ModelBuilder modelBuilder)
-//        {
-//            // Додавання категорій
-//            var categories = new List<Category>
-//            {
-//                new Category { Id = Guid.NewGuid(), Name = "Фантастика" },
-//                new Category { Id = Guid.NewGuid(), Name = "Детектив" },
-//                new Category { Id = Guid.NewGuid(), Name = "Наукова література" },
-//                new Category { Id = Guid.NewGuid(), Name = "Історія" },
-//                new Category { Id = Guid.NewGuid(), Name = "Психологія" },
-//                new Category { Id = Guid.NewGuid(), Name = "Філософія" },
-//                new Category { Id = Guid.NewGuid(), Name = "Економіка" },
-//                new Category { Id = Guid.NewGuid(), Name = "Мистецтво" },
-//                new Category { Id = Guid.NewGuid(), Name = "Подорожі" },
-//                new Category { Id = Guid.NewGuid(), Name = "Кулінарія" }
-//            };
-//            modelBuilder.Entity<Category>().HasData(categories);
-
-//            // Додавання підкатегорій
-//            var subCategories = new List<SubCategory>
-//            {
-//                // Підкатегорії для "Фантастика"
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[0].Id, Name = "Космічна фантастика" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[0].Id, Name = "Фентезі" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[0].Id, Name = "Альтернативна історія" },
-
-//                // Підкатегорії для "Детектив"
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[1].Id, Name = "Кримінальний детектив" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[1].Id, Name = "Трилер" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[1].Id, Name = "Поліцейський детектив" },
-
-//                // Підкатегорії для "Наукова література"
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[2].Id, Name = "Фізика" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[2].Id, Name = "Біологія" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[2].Id, Name = "Астрономія" },
-
-//                // Підкатегорії для "Історія"
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[3].Id, Name = "Стародавній світ" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[3].Id, Name = "Середньовіччя" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[3].Id, Name = "Нова історія" },
-
-//                // Підкатегорії для "Психологія"
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[4].Id, Name = "Емоційний інтелект" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[4].Id, Name = "Саморозвиток" },
-//                new SubCategory { Id = Guid.NewGuid(), CategoryId = categories[4].Id, Name = "Психологія стосунків" }
-//            };
-//            modelBuilder.Entity<SubCategory>().HasData(subCategories);
-
-//            // Додавання видавництв
-//            var publishers = new List<Publisher>
-//            {
-//                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво А", Description = "Видавництво, що спеціалізується на науковій літературі." },
-//                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво Б", Description = "Видавництво, відоме своїми детективами та трилерами." },
-//                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво В", Description = "Видавництво, що видає книги з фантастики та фентезі." },
-//                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво Г", Description = "Видавництво, що спеціалізується на історичних книгах." },
-//                new Publisher { Id = Guid.NewGuid(), Name = "Видавництво Д", Description = "Видавництво, що видає книги з психології та саморозвитку." }
-//            };
-//            modelBuilder.Entity<Publisher>().HasData(publishers);
-
-//            // Додавання авторів
-//            var authors = new List<Author>
-//            {
-//                new Author { Id = Guid.NewGuid(), Name = "Джон Сміт", Biography = "Відомий письменник у жанрі фантастики, автор бестселерів." },
-//                new Author { Id = Guid.NewGuid(), Name = "Анна Браун", Biography = "Авторка детективних романів, відома своїми захоплюючими сюжетами." },
-//                new Author { Id = Guid.NewGuid(), Name = "Марія Коваль", Biography = "Психологиня, авторка книг про емоційний інтелект та стрес." },
-//                new Author { Id = Guid.NewGuid(), Name = "Петро Іванов", Biography = "Історик, автор книг про середньовічну Європу." },
-//                new Author { Id = Guid.NewGuid(), Name = "Олександр Мельник", Biography = "Філософ, автор книг про етику та мораль." }
-//            };
-//            modelBuilder.Entity<Author>().HasData(authors);
-
-//            // Додавання книг
-//            var books = new List<Book>
-//            {
-//                new Book
-//                {
-//                    Id = Guid.NewGuid(),
-//                    Title = "Місто зі скла",
-//                    AuthorId = authors[0].Id,
-//                    PublisherId = publishers[2].Id,
-//                    CategoryId = categories[0].Id,
-//                    Price = 350.99f,
-//                    Language = Language.UKRAINIAN,
-//                    Year = new DateTime(2023, 1, 1),
-//                    Description = "Фантастичний роман про місто, побудоване зі скла.",
-//                    Cover = CoverType.HARDCOVER,
-//                    IsAvaliable = true
-//                },
-//                new Book
-//                {
-//                    Id = Guid.NewGuid(),
-//                    Title = "Тіні минулого",
-//                    AuthorId = authors[1].Id,
-//                    PublisherId = publishers[1].Id,
-//                    CategoryId = categories[1].Id,
-//                    Price = 250.99f,
-//                    Language = Language.UKRAINIAN,
-//                    Year = new DateTime(2022, 1, 1),
-//                    Description = "Детективний роман з несподіваною розв'язкою.",
-//                    Cover = CoverType.SOFT_COVER,
-//                    IsAvaliable = true
-//                },
-//                new Book
-//                {
-//                    Id = Guid.NewGuid(),
-//                    Title = "Емоційний інтелект",
-//                    AuthorId = authors[2].Id,
-//                    PublisherId = publishers[4].Id,
-//                    CategoryId = categories[4].Id,
-//                    Price = 400.99f,
-//                    Language = Language.UKRAINIAN,
-//                    Year = new DateTime(2021, 1, 1),
-//                    Description = "Книга про те, як розвивати емоційний інтелект.",
-//                    Cover = CoverType.HARDCOVER,
-//                    IsAvaliable = true
-//                }
-//            };
-//            modelBuilder.Entity<Book>().HasData(books);
-
-//            // Додавання зв'язків між книгами та підкатегоріями
-//            modelBuilder.Entity("BookSubCategory").HasData(
-//                new { BookId = books[0].Id, SubCategoryId = subCategories[0].Id }, // Місто зі скла -> Космічна фантастика
-//                new { BookId = books[1].Id, SubCategoryId = subCategories[3].Id }, // Тіні минулого -> Кримінальний детектив
-//                new { BookId = books[2].Id, SubCategoryId = subCategories[12].Id } // Емоційний інтелект -> Емоційний інтелект
-//            );
-
-//            // Додавання відгуків
-//            var feedbacks = new List<Feedback>
-//            {
-//                new Feedback
-//                {
-//                    Id = Guid.NewGuid(),
-//                    ReviewerName = "Іван",
-//                    Comment = "Чудова книга! Захоплюючий сюжет.",
-//                    Rating = 5,
-//                    Date = DateTime.UtcNow,
-//                    IsPurchased = true,
-//                    BookId = books[0].Id
-//                },
-//                new Feedback
-//                {
-//                    Id = Guid.NewGuid(),
-//                    ReviewerName = "Ольга",
-//                    Comment = "Цікава книга, але кінець трохи розчарував.",
-//                    Rating = 4,
-//                    Date = DateTime.UtcNow,
-//                    IsPurchased = true,
-//                    BookId = books[1].Id
-//                },
-//                new Feedback
-//                {
-//                    Id = Guid.NewGuid(),
-//                    ReviewerName = "Марія",
-//                    Comment = "Дуже корисна книга для саморозвитку.",
-//                    Rating = 5,
-//                    Date = DateTime.UtcNow,
-//                    IsPurchased = true,
-//                    BookId = books[2].Id
-//                }
-//            };
-//            modelBuilder.Entity<Feedback>().HasData(feedbacks);
-//        }
-//    }
-//}
-
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using BookAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -189,16 +15,13 @@ namespace BookAPI.Data
     {
         public static async Task Seed(ModelBuilder modelBuilder, S3StorageService storageService)
         {
-            var imagePaths = new Dictionary<string, string>
-            {
-                { "Місто зі скла", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJSVPcBg9gdzf2mit382PYIbFkkDbn-JB7jA&s" },
-                { "Тіні минулого", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJSVPcBg9gdzf2mit382PYIbFkkDbn-JB7jA&s" },
-                { "Емоційний інтелект", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJSVPcBg9gdzf2mit382PYIbFkkDbn-JB7jA&s" }
-            };
             var audios = new List<string>
             {
                 "https://commondatastorage.googleapis.com/codeskulptor-assets/jump.ogg" ,
             };
+
+            var random = new Random();
+
             // ============ CATEGORY ============
 
 
@@ -568,7 +391,7 @@ namespace BookAPI.Data
 
             modelBuilder.Entity<SubCategory>().HasData(subCategories);
 
-            // ============ Publishers ============
+            // ============ PUBLISHER ============
 
             var publisherData = new[] 
             {
@@ -604,113 +427,146 @@ namespace BookAPI.Data
 
             modelBuilder.Entity<Publisher>().HasData(publishers);
 
-            // Додавання авторів
-            var authors = new List<Author>
+            // ============ AUTHOR ============ 
+            // WILL BE FILLED AS THE BOOKS ARE FILLED
+            var authorData = new[]
             {
-                new Author { Id = Guid.NewGuid(), Name = "Джон Сміт", Biography = "Відомий письменник у жанрі фантастики, автор бестселерів." },
-                new Author { Id = Guid.NewGuid(), Name = "Анна Браун", Biography = "Авторка детективних романів, відома своїми захоплюючими сюжетами." },
-                new Author { Id = Guid.NewGuid(), Name = "Марія Коваль", Biography = "Психологиня, авторка книг про емоційний інтелект та стрес." },
-                new Author { Id = Guid.NewGuid(), Name = "Петро Іванов", Biography = "Історик, автор книг про середньовічну Європу." },
-                new Author { Id = Guid.NewGuid(), Name = "Олександр Мельник", Biography = "Філософ, автор книг про етику та мораль." }
+                (Guid.NewGuid(), "Ellen Lupton","Ellen Lupton is a designer, writer, and educator. Her books include Design Is Storytelling, Graphic Design Thinking, Health Design Thinking, and Extra Bold: A Feminist, Inclusive, Anti-Racist, Nonbinary Field Guide for Graphic Designers.", new DateTime(1963, 1, 1)),
+                (Guid.NewGuid(), "Adrian Shaughnessy","Adrian Shaughnessy is a graphic designer, writer, and senior tutor at the Royal College of Art, London.", new DateTime(1953, 6, 17)),
+                (Guid.NewGuid(), "Robin Williams","Robin Patricia Williams (born October 9, 1953) is an American educator who has authored many computer-related books, as well as the book Sweet Swan of Avon: Did a Woman Write Shakespeare?. Among her computer books are manuals of style The Mac is Not a Typewriter and numerous manuals for various macOS operating systems and applications, including The Little Mac Book.", new DateTime(1953,10,9)),
+                (Guid.NewGuid(), "Josef Müller-Brockmann","Josef Müller-Brockmann was a Swiss graphic designer, author, and educator, he was a Principal at Muller-Brockmann & Co. design firm.",new DateTime(1914, 5, 9)),
+                (Guid.NewGuid(), "David Airey","Designer of enduring logos and visual identities, David Airey runs an independent graphic design studio in Northern Ireland, collaborating with clients worldwide to grow their businesses through distinctive, meaningful, and emotive design.", new DateTime(1979, 1, 1)),
+                (Guid.NewGuid(), "Robert Bringhurst","Robert Bringhurst OC is a Canadian poet, typographer and author. He has translated substantial works from Haida and Navajo and from classical Greek and Arabic", new DateTime(1946, 10, 16)),
+                (Guid.NewGuid(), "Alina Wheeler","Alina Wheeler engages enterprises in a dynamic process to build their brands and embrace best practices. Wheeler inspires the whole branding team to seize every opportunity to design compelling customer experiences at every touchpoint.", new DateTime(2023,12,5)),
+                (Guid.NewGuid(), "Alan Fletcher","Alan Gerard Fletcher (27 September 1931 – 21 September 2006) was a British graphic designer. In his obituary, he was described by The Daily Telegraph as \"the most highly regarded graphic designer of his generation, and probably one of the most prolific\".", new DateTime(1957, 3, 30)),
+                (Guid.NewGuid(), "","", new DateTime()),
             };
+
+
+            var authors = new List<Author>();
+
+            foreach(var (id, name, biography, dateOfBirth) in authorData)
+            {
+                var author = new Author()
+                {
+                    Id = id,
+                    Name = name,
+                    Biography = biography,
+                    DateOfBirth = dateOfBirth
+                };
+                authors.Add(author);
+            }
             modelBuilder.Entity<Author>().HasData(authors);
-            var bookIds = new List<Guid>
+
+            // ============ BOOK ============ 
+            // (id, title, authorId, publisherId, categoryId, price, language, year, descriptionm cover,  true, imageUrl)
+   
+
+            var bookData = new[]
             {
-                Guid.NewGuid(), // Id для "Місто зі скла"
-                Guid.NewGuid(), // Id для "Тіні минулого"
-                Guid.NewGuid()  // Id для "Емоційний інтелект"
-            };
-            var books = new List<Book>
-            {
-                new Book
-                {
-                    Id = bookIds[0],
-                    Title = "Місто зі скла",
-                    AuthorId = authors[0].Id,
-                    PublisherId = publishers[2].Id,
-                    CategoryId = categories[0].Id,
-                    Price = 350.99f,
-                    Language = Language.UKRAINIAN,
-                    Year = new DateTime(2023, 1, 1),
-                    Description = "Фантастичний роман про місто, побудоване зі скла.",
-                    Cover = CoverType.HARDCOVER,
-                    IsAvaliable = true,
-                    AudioFileUrl = await UploadAudioAsync(storageService, audios[0], bookIds[0]), 
-                    ImageUrl = await UploadImageAsync(storageService, imagePaths["Місто зі скла"], bookIds[0])
-                },
-                new Book
-                {
-                    Id = bookIds[1],
-                    Title = "Тіні минулого",
-                    AuthorId = authors[1].Id,
-                    PublisherId = publishers[1].Id,
-                    CategoryId = categories[1].Id,
-                    Price = 250.99f,
-                    Language = Language.UKRAINIAN,
-                    Year = new DateTime(2022, 1, 1),
-                    Description = "Детективний роман з несподіваною розв'язкою.",
-                    Cover = CoverType.SOFT_COVER,
-                    IsAvaliable = true,
-                    ImageUrl = await UploadImageAsync(storageService, imagePaths["Тіні минулого"], bookIds[1]) 
-                },
-                new Book
-                {
-                    Id = bookIds[2], 
-                    Title = "Емоційний інтелект",
-                    AuthorId = authors[2].Id,
-                    PublisherId = publishers[4].Id,
-                    CategoryId = categories[4].Id,
-                    Price = 400.99f,
-                    Language = Language.UKRAINIAN,
-                    Year = new DateTime(2021, 1, 1),
-                    Description = "Книга про те, як розвивати емоційний інтелект.",
-                    Cover = CoverType.HARDCOVER,
-                    IsAvaliable = true,
-                    ImageUrl = await UploadImageAsync(storageService, imagePaths["Емоційний інтелект"], bookIds[2]) 
+                // Graphics & Design
+                new[]{
+                (Guid.NewGuid(),"Graphic Design: The New Basics", authors[0].Id, publishers[random.Next(publishers.Count)].Id,categories[0].Id, 350.00f, Language.ENGLISH, new DateTime(2015, 7, 14), "Ellen Lupton and Jennifer Cole Phillips's celebrated introduction to graphic design, available in a revised and updated edition.", CoverType.SOFT_COVER, true, "https://m.media-amazon.com/images/I/71D97M+c59L._SL1200_.jpg"),
+                (Guid.NewGuid(),"Thinking with Type", authors[0].Id,publishers[random.Next(publishers.Count)].Id, categories[0].Id, 250.99f, Language.ENGLISH, new DateTime(2010, 11,3), "The best-selling Thinking with Type in a revised and expanded second edition:Thinking with Type is the definitive guide to using typography in visual communication. Ellen Lupton provides clear and focused guidance on how letters, words, and paragraphs should be aligned, spaced, ordered, and shaped.", CoverType.HARDCOVER, true, "https://m.media-amazon.com/images/I/71ZO6EyOZ3L._SL1500_.jpg"),
+                (Guid.NewGuid(),"How to be a Graphic Designer Without Losing Your Soul", authors[1].Id, publishers[random.Next(publishers.Count)].Id, categories[0].Id, 350.00f, Language.ENGLISH, new DateTime(2010, 8, 30), "Graphic designers constantly complain that there is no career manual to guide them through the profession. Adrian Shaughnessy draws on a wealth of experience to provide just such a handbook. Aimed at the independent-minded, it addresses the concerns of young designers who want to earn a living by doing expressive and meaningful work and avoid becoming a hired drone working on soulless projects. It offers straight-talking advice on how to establish your design career and suggestions - that you won’t have been taught at college - for running a successful business. ", CoverType.SOFT_COVER, true, "https://m.media-amazon.com/images/I/81PLuztRoPS._SL1500_.jpg"),
+                (Guid.NewGuid(),"Non-Designer's Design Book", authors[2].Id, publishers[random.Next(publishers.Count)].Id, categories[0].Id, 375.49f, Language.ENGLISH, new DateTime(2014, 11, 19), "For nearly 20 years, designers and non-designers alike have been introduced to the fundamental principles of great design by author Robin Williams. Through her straightforward and light-hearted style, Robin has taught hundreds of thousands of people how to make their designs look professional using four surprisingly simple principles.", CoverType.HARDCOVER, true, "https://m.media-amazon.com/images/I/81PB4SmcLVL._SL1500_.jpg"),
+                (Guid.NewGuid(),"Grid systems in graphic design", authors[3].Id, publishers[random.Next(publishers.Count)].Id, categories[0].Id, 150.99f, Language.GERMAN, new DateTime(1996, 10, 1), "A grid system is a rigid framework that is supposed to help graphic designers in the meaningful, logical and consistent organization of information on a page. It is an established tool that is used by print and web designers to create well-structured, balanced designs.", CoverType.SOFT_COVER, true, "https://m.media-amazon.com/images/I/71xVgz2a-qL._SL1500_.jpg"),
+                (Guid.NewGuid(),"Logo Design Love", authors[4].Id, publishers[random.Next(publishers.Count)].Id, categories[0].Id, 299.49f, Language.ENGLISH, new DateTime(2014, 8, 20), "Completely updated and expanded, the second edition of David Airey's Logo Design Love contains more of just about everything that made the first edition so great: more case studies, more sketches, more logos, more tips for working with clients, more insider stories, and more practical information for getting the job and getting it done right.", CoverType.HARDCOVER, true, "https://m.media-amazon.com/images/I/5176ZejmyrL._SL1360_.jpg"),
+                (Guid.NewGuid(),"Identity Designed", authors[4].Id, publishers[random.Next(publishers.Count)].Id, categories[0].Id, 200.00f, Language.ENGLISH, new DateTime(2019, 1, 22), "Ideal for students of design, independent designers, and entrepreneurs who want to expand their understanding of effective design in business, Identity Designed is the definitive guide to visual branding.\r\n", CoverType.HARDCOVER, true, "https://m.media-amazon.com/images/I/615DcJOIL-L._SL1500_.jpg"),
+                (Guid.NewGuid(),"The Elements of Typographic Style", publishers[random.Next(publishers.Count)].Id, authors[5].Id, categories[0].Id, 350.00f, Language.ENGLISH, new DateTime(2004, 9, 27), "Renowned typographer and poet Robert Bringhurst brings clarity to the art of typography with this masterful style guide. Combining practical, theoretical, and historical, this book is a must for graphic artists, editors, or anyone working with the printed page using digital or traditional methods.", CoverType.SOFT_COVER, true, "https://m.media-amazon.com/images/I/51I-bty6iSL._SL1113_.jpg"),
+                (Guid.NewGuid(),"Designing Brand Identity", authors[6].Id, publishers[random.Next(publishers.Count)].Id, categories[0].Id, 449.99f, Language.ENGLISH, new DateTime(2024, 3, 6), "It’s harder than ever to be the brand of choice―in many markets, technology has lowered barriers to entry, increasing competition. Everything is digital and the need for fresh content is relentless. Decisions that used to be straightforward are now complicated by rapid advances in technology, the pandemic, political polarization, and numerous social and cultural changes. ", CoverType.SOFT_COVER, true, "https://m.media-amazon.com/images/I/91vZAsZTQZL._SL1500_.jpg"),
+                (Guid.NewGuid(),"Design De Identidade Da Marca", authors[6].Id,publishers[random.Next(publishers.Count)].Id,  categories[0].Id, 350.00f, Language.OTHER, new DateTime(2024, 3, 6), "", CoverType.HARDCOVER, true, "https://m.media-amazon.com/images/I/81Qfj7i31HL._SL1500_.jpg"),
+                (Guid.NewGuid(),"The Art of Looking Sideways", authors[7].Id, publishers[random.Next(publishers.Count)].Id, categories[0].Id, 350.00f, Language.ENGLISH, new DateTime(2001, 8, 20), "The Art of Looking Sideways is a primer in visual intelligence, an exploration of the workings of the eye, the hand, the brain and the imagination. It is an inexhaustible mine of anecdotes, quotations, images, curious facts and useless information, oddities, serious science, jokes and memories, all concerned with the interplay between the verbal and the visual, and the limitless resources of the human mind.", CoverType.HARDCOVER, true, "https://m.media-amazon.com/images/I/81NNjU3Kh+L._SL1500_.jpg"),
                 }
             };
+
+            var books = new List<Book>();
+            var subcategoryBookData = new Dictionary<Guid, Guid>();
+            int subcategoryId = 0;
+            foreach (var subcategoryBooks in bookData)
+            {
+                foreach (var (id,title,authorId,publisherId, categoryId, price, language, year, description, cover, isAvailable, imageUrl) in subcategoryBooks)
+                {
+                    var book = new Book()
+                    {
+                        Id = id,
+                        Title = title,
+                        AuthorId = authorId,
+                        PublisherId = publisherId,
+                        CategoryId = categoryId,
+                        Price = price,
+                        Language = language,
+                        Year = year,
+                        Description = description,
+                        Cover = cover,
+                        IsAvaliable = isAvailable,
+                        ImageUrl = await UploadImageAsync(storageService, imageUrl, id),
+                    };
+
+                    subcategoryBookData.Add(id, subCategories[subcategoryId].Id);
+                }
+                subcategoryId++;
+            }
             modelBuilder.Entity<Book>().HasData(books);
 
+            // ============ BOOK-SUBCATEGORY ============ 
+
             modelBuilder.Entity("BookSubCategory").HasData(
-                new { BookId = books[0].Id, SubCategoryId = subCategories[0].Id }, 
-                new { BookId = books[1].Id, SubCategoryId = subCategories[3].Id }, 
-                new { BookId = books[2].Id, SubCategoryId = subCategories[12].Id }
+                subcategoryBookData.Select(kvp => new {BookId = kvp.Key, SubCategoryId = kvp.Value}).ToArray()    
             );
 
-            // Додавання відгуків
-            var feedbacks = new List<Feedback>
+            // ============ FEEDBACK ============ 
+
+            var feedbackNames = new List<string>
             {
-                new Feedback
-                {
-                    Id = Guid.NewGuid(),
-                    ReviewerName = "Іван",
-                    Comment = "Чудова книга! Захоплюючий сюжет.",
-                    Rating = 5,
-                    Date = DateTime.UtcNow,
-                    IsPurchased = true,
-                    BookId = books[0].Id
-                },
-                new Feedback
-                {
-                    Id = Guid.NewGuid(),
-                    ReviewerName = "Ольга",
-                    Comment = "Цікава книга, але кінець трохи розчарував.",
-                    Rating = 4,
-                    Date = DateTime.UtcNow,
-                    IsPurchased = true,
-                    BookId = books[1].Id
-                },
-                new Feedback
-                {
-                    Id = Guid.NewGuid(),
-                    ReviewerName = "Марія",
-                    Comment = "Дуже корисна книга для саморозвитку.",
-                    Rating = 5,
-                    Date = DateTime.UtcNow,
-                    IsPurchased = true,
-                    BookId = books[2].Id
-                }
+                "Ivan",
+                "Mykola",
+                "Yaroslav",
+                "Yaroslava",
+                "Iryna",
+                "Viktor",
+                "Volodymyr",
+                "Andrii",
+                "Maria",
+                "Andriana",
+                "Viktoria",
+                "Yura",
+                "Bohdan",
+                "Vasiliy",
+                "Anatoliy",
+                "Vyacheslav",
+                "Nazariy",
             };
+
+            var feedbackCombination = new[]
+            {
+                    ("Terrible experience, would not recommend.", 1),
+                    ("Not great, had several issues.", 2),
+                    ("Average experience, could be better.", 3),
+                    ("Good service, but there's room for improvement.", 4),
+                    ("Excellent! Highly satisfied.", 5)
+            };
+
+            var feedbacks = new List<Feedback>();
+            foreach (var book in books)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    var feedbackChoice = random.Next(feedbackCombination.Length);
+                    var feedback = new Feedback()
+                    {
+                        Id = Guid.NewGuid(),
+                        ReviewerName = feedbackNames[random.Next(feedbackNames.Count)],
+                        Comment = feedbackCombination[feedbackChoice].Item1,
+                        Rating = feedbackCombination[feedbackChoice].Item2,
+                        Date = DateTime.UtcNow.AddDays(-random.Next(0, 15)),
+                        IsPurchased = true,
+                        BookId = book.Id,
+                    };
+
+                    feedbacks.Add(feedback);
+                }
+            }
 
 
             modelBuilder.Entity<Feedback>().HasData(feedbacks);
